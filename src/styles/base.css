@@ -24,10 +24,13 @@ body.fiche-ouverte #scene { transform: translateX(-210px); }
 @keyframes pulse { 50% { opacity: .55; } }
 @keyframes pousse { from { transform: scaleX(0); } }
 
+/* Le globe se décale pour rester visible à côté des panneaux */
 @media (max-width: 820px) {
-  body.fiche-ouverte #scene { transform: none; }
-  #scene { transform: translateY(-16vh); }
-  body.fiche-ouverte #scene { transform: translateY(-16vh); }
+  #scene, body.fiche-ouverte #scene { transform: translateY(-14vh); }
+}
+@media (max-height: 520px) and (min-width: 600px) and (pointer: coarse) {
+  #scene { transform: translateX(125px); }           /* panneau à gauche */
+  body.fiche-ouverte #scene { transform: translateX(-24vw); }   /* fiche à droite */
 }
 
 @media (prefers-reduced-motion: reduce) {

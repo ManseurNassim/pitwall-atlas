@@ -10,7 +10,9 @@ import { annoncer } from "./decor.js";
 import { htmlPiste, animerPiste, arreterPiste } from "./piste.js";
 
 const R = reglages.replay;
-let nbLignes = R.lignesMax;   // ajusté à la hauteur disponible de la colonne (preparer)
+let nbLignes = R.lignesMax;
+/** Nombre de lignes qui tiennent dans la place restante (recalculé à chaque manche : la carte du podium change de taille). */
+const ajusterLignes = () => { nbLignes = Math.max(R.lignesMin, Math.min(R.lignesMax, Math.floor(barres.clientHeight / R.hauteurLigne))); };
 const bouton = document.getElementById("bouton-replay");
 const panneau = document.getElementById("replay");
 const carte = document.getElementById("replay-carte");
@@ -44,7 +46,6 @@ function compter(el, de, a) {
 function preparer() {
   const P = etat.saison.progression, codes = new Map();
   P.forEach(e => e.pilotes.forEach(([code, , eq]) => codes.set(code, eq)));
-  nbLignes = Math.max(R.lignesMin, Math.min(R.lignesMax, Math.floor(barres.clientHeight / R.hauteurLigne)));
   barres.innerHTML = ""; lignes.clear();
   for (const [code, eq] of codes) {
     const el = document.createElement("div");
@@ -63,6 +64,7 @@ function etape() {
   const { index } = etat.replay, e = etat.saison.progression[index], m = mancheDe(e);
   const max = e.pilotes[0][1] || 1;
   const rang = new Map(e.pilotes.map(([code], i) => [code, i]));
+  ajusterLignes();
   annoncer(esc(m.gpCourt), t("replay.annonce", { round: pad(m.round), total: etat.saison.manches.length }));
   for (const [code, l] of lignes) {
     const i = rang.get(code) ?? 99, ligne = e.pilotes[i];

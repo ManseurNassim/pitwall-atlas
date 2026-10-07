@@ -83,11 +83,27 @@ body.en-replay #scene { transform: translateX(-230px); }
 .replay-frise i.fait { background: var(--texte-3); }
 .replay-frise i.ici { background: var(--rouge); }
 
+/* Téléphone en portrait : globe en haut, panneau en bas un peu plus petit pour voir le déplacement */
 @media (max-width: 820px) {
-  body.en-replay #scene { transform: translateY(-26vh); }
+  body.en-replay #scene { transform: translateY(-22vh); }
   body.en-replay .saisons { display: none; }
-  .replay { top: auto; height: 64vh; width: auto; left: 16px; padding: 12px; gap: 8px; }
-  .replay .manche { font-size: 17px; }
-  .replay-piste { display: none; }   /* sur téléphone : globe + podium + classement, le tracé n'a pas la place */
-  .replay-carte b { font-size: 19px; }
+  .replay { top: auto; height: 50vh; width: auto; left: 12px; right: 12px; bottom: 12px; padding: 10px; gap: 6px; }
+  .replay-piste { display: none; }   /* pas la place : globe + podium + classement */
+}
+/* Téléphone en paysage : colonne étroite à droite, sans tracé */
+@media (max-height: 520px) and (min-width: 600px) and (pointer: coarse) {
+  body.en-replay #scene { transform: translateX(-160px); }
+  .replay { top: 50px; bottom: 8px; right: 12px; width: 310px; padding: 10px; gap: 6px; }
+  .replay-piste { display: none; }
+}
+/* Version compacte commune aux deux */
+@media (max-width: 820px), (max-height: 520px) and (pointer: coarse) {
+  .replay-tete button { width: 28px; height: 28px; font-size: 11px; }
+  .replay .manche { font-size: 15px; }
+  .replay-carte { min-height: 104px; padding: 7px 10px 8px 14px; }   /* hauteur réservée : le nombre de lignes du classement reste stable */
+  .replay-carte b { font-size: 16px; }
+  .replay-carte.finale b { font-size: 20px; }
+  .replay-carte .fond { font-size: 54px; bottom: -12px; }
+  .podium-replay { margin-top: 5px; padding-top: 5px; gap: 12px; }
+  .podium-replay li { font-size: 12px; }
 }

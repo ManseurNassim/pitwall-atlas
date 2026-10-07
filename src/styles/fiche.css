@@ -111,6 +111,10 @@ body.fiche-ouverte section.fiche { transform: none; }
   section.fiche { padding-inline: 16px; }
   .records { grid-template-columns: 1fr; }
 }
+@media (max-height: 520px) and (min-width: 600px) and (pointer: coarse) {
+  section.fiche { width: min(440px, 52%); padding: 12px 16px 24px; }
+  .fiche h2 { font-size: 26px; }
+}
 
 .piste .s1 { stroke: var(--s1); }
 .piste .s2 { stroke: var(--s2); }
