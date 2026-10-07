@@ -1,4 +1,4 @@
-# Pitwall Atlas 🏎️🌍
+# F1Atlas 🏎️🌍
 
 Un petit projet perso pour voir jusqu'où on peut aller avec un globe 3D et des données de Formule 1.
 
