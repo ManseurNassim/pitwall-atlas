@@ -1,0 +1,14 @@
+/* ---------- Intro : feux de départ ---------- */
+#intro {
+  position: fixed; inset: 0; z-index: 50; background: var(--carbone);
+  display: grid; place-items: center; transition: clip-path 1s var(--ease);
+  clip-path: inset(0 0 0 0);
+}
+#intro.parti { clip-path: inset(0 0 100% 0); pointer-events: none; }
+.feux { display: flex; gap: clamp(8px, 2.4vw, 22px); padding: 18px clamp(12px, 3vw, 26px); background: #050507; border-radius: 10px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.feu { display: grid; gap: 10px; padding: 10px; background: #0d0d11; border-radius: 6px; }
+.feu i { width: clamp(30px, 7vw, 54px); aspect-ratio: 1; border-radius: 50%; background: #1d1d23; transition: background .08s, box-shadow .08s; }
+.feu.on i:nth-child(n+2) { background: var(--rouge-vif); box-shadow: 0 0 30px var(--rouge), inset 0 -6px 12px rgba(0,0,0,.35); }
+.intro-txt { margin-top: 26px; text-align: center; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .3em; font-size: 13px; color: var(--texte-2); }
+.intro-txt b { color: var(--texte); }
+

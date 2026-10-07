@@ -1,0 +1,90 @@
+{
+  "_note": "Tous les textes de l'interface. Accès : t(\"fiche.longueur\"), paramètres {nom}, pluriels {\"one\": …, \"other\": …} (Intl.PluralRules). Une nouvelle langue = une copie de ce fichier traduite.",
+  "page": {
+    "globe": "Globe des circuits",
+    "vueGlobale": "Vue globale",
+    "saison": "Saison",
+    "sousLogo": "Saison {annee} · {n} Grand Prix"
+  },
+  "intro": { "saison": "Saison", "depart": "<b>Lights out</b> and away we go" },
+  "onglets": { "calendrier": "Calendrier", "pilotes": "Pilotes", "equipes": "Équipes" },
+  "entete": {
+    "saisonEnCours": "Saison en cours",
+    "prochain": "Prochain",
+    "enCours": "En cours",
+    "decompte": "<b>{j}</b>j <b>{h}</b>h <b>{m}</b>m",
+    "champion": "Champion {annee}",
+    "bilanChampion": "{pts} pts · {v} V"
+  },
+  "panneau": {
+    "next": "NEXT",
+    "indisponible": "Classement indisponible.",
+    "pts": "pts",
+    "victoires": { "one": "{n} victoire", "other": "{n} victoires" },
+    "aucuneVictoire": "aucune victoire",
+    "aide": "Cliquez un continent ou un circuit",
+    "continent": "<b>{continent}</b> · {n} Grand Prix en {annee}",
+    "zoomer": " — cliquez pour zoomer"
+  },
+  "continents": {
+    "Europe": "Europe", "Asia": "Asie", "North America": "Amérique du N.", "South America": "Amérique du S.",
+    "Oceania": "Océanie", "Africa": "Afrique"
+  },
+  "fiche": {
+    "fermer": "Fermer la fiche",
+    "manche": "Manche {n}",
+    "longueur": "Longueur", "tours": "Tours", "distance": "Distance", "virages": "Virages", "premierGP": "1er GP", "editions": "Éditions",
+    "km": "km",
+    "resultat": "Résultat {annee}",
+    "depart": "Départ dans",
+    "parti": "parti {place}",
+    "partiStands": "parti des stands",
+    "unites": ["jours", "heures", "min", "sec"],
+    "aussi": "Aussi en {annee} · R{round} {gp} →",
+    "tourParTour": "La course, tour par tour",
+    "records": "Records du circuit",
+    "roi": "Roi des lieux",
+    "victoiresMot": { "one": "victoire", "other": "victoires" },
+    "poleVictoire": "Pole → victoire",
+    "poleVictoireDetail": "des {n} courses gagnées depuis la pole",
+    "remontee": "Meilleure remontée",
+    "stands": "Stands",
+    "autres": "Autres multiples",
+    "parEcurie": "Victoires par écurie",
+    "palmares": "Palmarès",
+    "voirTout": "Voir les {n} vainqueurs",
+    "premiereEdition": "Première édition en {annee} : l'histoire de ce circuit reste à écrire.",
+    "saviezVous": "Le saviez-vous",
+    "source": "Résultats : API Jolpica-F1 (ex-Ergast), à jour du Grand Prix du {maj}. Tracé : bacinger/f1-circuits. Pays : Natural Earth.",
+    "grilleStands": "stands",
+    "grillePole": "pole"
+  },
+  "piste": { "aria": "Tracé du circuit {nom}", "s1": "S1", "s2": "S2", "s3": "S3" },
+  "graphique": {
+    "aria": "Positions des pilotes à chaque tour",
+    "survol": "Survolez un pilote",
+    "arret": "arrêt aux stands",
+    "abandon": "abandon",
+    "resume": "<b>{code}</b> · départ P{depart} → {fin}",
+    "arrivee": "arrivée P{place}",
+    "abandonTour": "abandon au tour {tour}",
+    "arrets": { "one": "{n} arrêt (T{tours})", "other": "{n} arrêts (T{tours})" },
+    "aucunArret": "aucun arrêt"
+  },
+  "replay": {
+    "bouton": "▶ Replay",
+    "aria": "Replay de la saison",
+    "titre": "Replay",
+    "pause": "Pause / reprise",
+    "quitter": "Quitter le replay",
+    "annonce": "Manche {round} / {total}",
+    "vainqueur": "Vainqueur",
+    "win": "WIN",
+    "nouveauLeader": "Nouveau leader · {code}",
+    "saison": "Saison {annee}",
+    "apres": "Après {n} manches",
+    "champion": "Champion du monde",
+    "leader": "Leader du championnat",
+    "points": "{pts} points"
+  }
+}

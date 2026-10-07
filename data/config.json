@@ -1,0 +1,37 @@
+{
+ "_note": "Réglages des scripts de données (scripts/*.py). Rien de ce qui est ici n'est écrit en dur dans le code.",
+ "langue": "fr",
+ "saisons": {
+  "de": 2020,
+  "a": null
+ },
+ "openf1Depuis": 2023,
+ "api": {
+  "jolpica": "https://api.jolpi.ca/ergast/f1",
+  "openf1": "https://api.openf1.org/v1",
+  "pauseJolpica": 0.4,
+  "pauseOpenf1": 2.2,
+  "essais": 6
+ },
+ "trace": {
+  "largeur": 1000,
+  "hauteur": 640,
+  "marge": 36
+ },
+ "pays": {
+  "exclus": [
+   "Antarctica",
+   "Seven seas (open ocean)"
+  ],
+  "toleranceHote": 0.02,
+  "toleranceAutre": 0.08,
+  "aireMinIlot": 0.4,
+  "aireMaxHexFin": 15,
+  "resolutionHex": 3,
+  "resolutionHexFine": 4
+ },
+ "stats": {
+  "topPilotes": 3,
+  "topEquipes": 6
+ }
+}

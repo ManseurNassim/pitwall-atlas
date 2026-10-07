@@ -1,0 +1,4 @@
+# Dépendances Python des scripts de données (python -m pip install -r requirements.txt)
+shapely>=2.0
+# Contrôle du code Python : python -m ruff check scripts
+ruff>=0.6

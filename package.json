@@ -1,0 +1,26 @@
+{
+  "name": "pitwall-atlas",
+  "version": "1.0.0",
+  "description": "Globe 3D interactif des circuits de Formule 1",
+  "scripts": {
+    "dev": "vite",
+    "verifier": "node scripts/verifier.mjs",
+    "lint": "eslint . && python -m ruff check scripts",
+    "build": "npm run verifier && vite build",
+    "build:artifact": "npm run verifier && vite build --mode artifact && node scripts/artifact.mjs",
+    "preview": "vite preview",
+    "donnees": "python scripts/fetch_api.py && python scripts/fetch_openf1.py && python scripts/donnees.py"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "vite": "^7.3.7",
+    "vite-plugin-singlefile": "^2.3.3"
+  },
+  "dependencies": {
+    "globe.gl": "^2.46.2"
+  },
+  "private": true
+}

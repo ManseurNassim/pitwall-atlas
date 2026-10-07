@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Pitwall Atlas</title>
+  <meta name="description" content="Globe 3D interactif des circuits de Formule 1 : calendrier, vainqueurs, records et palmarès.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;0,900;1,600;1,700&family=Roboto+Mono:wght@400;500;700&display=swap">
+</head>
+<body>
+  <!-- Textes : attributs data-t / data-t-aria (clés de src/config/textes.<langue>.json), remplis au démarrage. -->
+  <canvas id="ciel" aria-hidden="true"></canvas>
+  <div id="scene" data-t-aria="page.globe"></div>
+
+  <div id="intro" aria-hidden="true">
+    <div>
+      <div class="feux">
+        <div class="feu"><i></i><i></i><i></i></div>
+        <div class="feu"><i></i><i></i><i></i></div>
+        <div class="feu"><i></i><i></i><i></i></div>
+        <div class="feu"><i></i><i></i><i></i></div>
+        <div class="feu"><i></i><i></i><i></i></div>
+      </div>
+      <div class="intro-txt" id="intro-txt"><span data-t="intro.saison"></span> <b id="intro-saison"></b></div>
+    </div>
+  </div>
+
+  <header class="barre">
+    <a class="logo" href="#" id="logo" data-t-aria="page.vueGlobale">
+      <span class="vitesse" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><b>Pitwall <span>Atlas</span></b><small id="sous-logo"></small></span>
+    </a>
+    <nav class="saisons" id="saisons" data-t-aria="page.saison"></nav>
+    <button class="bouton-replay" id="bouton-replay" hidden><span data-t="replay.bouton"></span> <span class="annee"></span></button>
+    <div id="encart"></div>
+  </header>
+
+  <aside class="saison">
+    <div class="onglets carte-verre" role="tablist">
+      <button role="tab" aria-selected="true" data-onglet="calendrier" data-t="onglets.calendrier"></button>
+      <button role="tab" aria-selected="false" data-onglet="pilotes" data-t="onglets.pilotes"></button>
+      <button role="tab" aria-selected="false" data-onglet="equipes" data-t="onglets.equipes"></button>
+    </div>
+    <div class="liste carte-verre" id="liste"></div>
+  </aside>
+
+  <div id="flash" aria-hidden="true"></div>
+  <div id="info-continent"></div>
+  <button class="vue-globale" id="vue-globale" data-t="page.vueGlobale"></button>
+
+  <section class="fiche" id="fiche" aria-live="polite"></section>
+
+  <section class="replay" id="replay" data-t-aria="replay.aria" hidden>
+    <div class="replay-tete">
+      <span class="titre"><span data-t="replay.titre"></span> <b class="annee"></b></span>
+      <button class="pause" data-t-aria="replay.pause">❚❚</button>
+      <button class="quitter" data-t-aria="replay.quitter">✕</button>
+    </div>
+    <div class="manche"></div>
+    <div class="replay-piste"></div>
+    <div class="replay-carte" id="replay-carte"></div>
+    <div class="replay-barres"></div>
+    <div class="replay-frise" aria-hidden="true"></div>
+  </section>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

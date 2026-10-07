@@ -1,0 +1,24 @@
+/* Layout : globe plein écran = le monde ; calendrier à gauche = la saison ; fiche à droite = le circuit.
+   Charte F1 : carbone, rouge course, blanc ; italique 900 pour l'affichage, mono pour le chrono. */
+:root {
+  --carbone: #101016;
+  --carbone-2: #18181f;
+  --carbone-3: #23232c;
+  --trait: #34343f;
+  --texte: #f4f4f6;
+  --texte-2: #a3a3b2;
+  --texte-3: #6c6c7c;
+  --rouge: #e10600;
+  --rouge-vif: #ff2a1f;
+  --s1: #ff3b30;  /* couleurs secteurs façon chrono TV */
+  --s2: #2f8cff;
+  --s3: #ffd400;
+  --violet: #b14dff;  /* meilleur temps */
+  --gain: #2fd27a;    /* places gagnées */
+  --f-aff: "Titillium Web", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "Roboto Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --verre: rgba(16,16,22,.9);   /* fonds de panneaux opaques : pas de flou (backdrop-filter) au-dessus du globe, trop coûteux */
+  --verre-dense: rgba(18,18,24,.94);
+  color-scheme: dark;
+}

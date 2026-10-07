@@ -1,0 +1,93 @@
+/* ---------- Replay de saison ----------
+   Une seule colonne à droite, de haut en bas : manche, tracé du circuit (grand, avec secteurs), podium,
+   classement animé, frise. Le globe occupe la partie gauche (décalé de la moitié de la colonne). */
+.bouton-replay {
+  margin-left: 4px; padding: 8px 14px; border-radius: 4px; background: var(--rouge); color: #fff;
+  font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .08em; font-size: 12px;
+  box-shadow: 0 6px 20px rgba(225, 6, 0, .35); transition: transform .2s var(--ease), box-shadow .2s;
+}
+.bouton-replay:hover { transform: translateY(-1px); box-shadow: 0 8px 26px rgba(225, 6, 0, .55); }
+.bouton-replay span { font-family: var(--f-mono); font-style: normal; margin-left: 2px; }
+
+body.en-replay aside.saison, body.en-replay #info-continent, body.en-replay .vue-globale,
+body.en-replay #encart, body.en-replay .bouton-replay { opacity: 0; pointer-events: none; }
+body.en-replay #scene { transform: translateX(-230px); }
+
+.replay {
+  position: fixed; z-index: 11; top: 78px; bottom: 16px; right: 16px; width: min(440px, calc(100% - 32px));
+  display: flex; flex-direction: column; gap: 12px; padding: 16px 18px 18px;
+  background: var(--verre-dense); border: 1px solid var(--trait); border-radius: 6px;
+  animation: glisse .6s var(--ease); user-select: none;   /* pas de texte surligné en cliquant pendant le replay */
+}
+@keyframes glisse { from { transform: translateX(30px); opacity: 0; } }
+.replay-tete { display: flex; align-items: center; gap: 8px; }
+.replay-tete .titre { flex: 1; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: var(--texte-2); }
+.replay-tete .titre b { color: var(--texte); font-family: var(--f-mono); font-style: normal; }
+.replay-tete button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--trait); font-size: 12px; }
+.replay-tete button:hover { border-color: var(--texte-2); }
+.replay .manche { font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 24px; line-height: 1.1; min-height: 1.1em; }
+.replay .manche .rd { font-family: var(--f-mono); font-style: normal; font-size: 13px; color: var(--rouge-vif); vertical-align: 4px; margin-right: 4px; }
+
+/* Tracé : même composant que la fiche (ui/piste.js) */
+.replay-piste { flex: none; aspect-ratio: 1000 / 640; }   /* place réservée avant même le premier tracé */
+.replay-piste .piste { margin: 0; max-width: 100%; }
+
+/* Podium de la manche (ou champion à la fin) */
+.replay-carte { position: relative; flex: none; min-height: 116px; padding: 10px 14px 12px 18px; border-radius: 4px; overflow: hidden; background: var(--carbone-2); }
+.replay-carte::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--eq); }
+/* Changement de vainqueur net : la couleur d'écurie est là tout de suite (pas de fondu depuis l'invisible),
+   seul le texte glisse légèrement */
+.replay-carte.entre > * { animation: carte .35s var(--ease); }
+@keyframes carte { from { opacity: .3; transform: translateX(-8px); } }
+.replay-carte small { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--texte-2); text-transform: uppercase; }
+.replay-carte .lbl { display: block; margin-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--eq); }
+.replay-carte b { display: block; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 24px; line-height: 1.05; }
+.replay-carte em { font-style: normal; color: var(--texte-2); font-size: 13px; }
+.replay-carte.finale b { font-size: 30px; }
+.replay-carte .fond { position: absolute; right: -4px; bottom: -20px; font: 900 italic 84px/1 var(--f-aff); color: var(--eq); opacity: .14; pointer-events: none; }
+.replay-carte .nouveau-leader { display: inline-block; margin-top: 8px; padding: 3px 9px; background: var(--rouge); color: #fff; font-weight: 900; font-style: italic; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; animation: pulse 1s 3; }
+.podium-replay { list-style: none; margin: 8px 0 0; padding: 8px 0 0; display: flex; gap: 18px; border-top: 1px solid var(--trait); }
+.podium-replay li { display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .03em; }
+.podium-replay li::before { content: ""; width: 4px; height: 16px; border-radius: 1px; background: var(--eq); }
+.podium-replay i { font: 700 11px var(--f-mono); font-style: normal; color: var(--texte-2); }
+
+/* Classement animé : occupe la place restante (nombre de lignes calculé dans ui/replay.js) */
+.replay-barres { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.ligne-replay {
+  position: absolute; left: 0; right: 0; top: 0; height: 28px;
+  display: grid; grid-template-columns: 24px 74px 1fr 46px; align-items: center; gap: 8px;
+  transition: transform .6s var(--ease), opacity .4s;
+}
+.ligne-replay.hors { opacity: 0; }
+.ligne-replay .pos { font-family: var(--f-mono); font-size: 11px; color: var(--texte-3); }
+.ligne-replay .code { position: relative; font-weight: 900; font-size: 13px; letter-spacing: .04em; }
+.ligne-replay .delta { position: absolute; left: 30px; top: -5px; font: 700 9px var(--f-mono); font-style: normal; opacity: 0; }
+.ligne-replay .delta.gain { color: var(--gain); animation: delta 2.6s var(--ease); }
+.ligne-replay .delta.perte { color: var(--s1); animation: delta 2.6s var(--ease); }
+@keyframes delta { 0% { opacity: 0; transform: translateY(6px); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.ligne-replay.tete .rail i { box-shadow: 0 0 14px color-mix(in srgb, var(--eq) 70%, transparent); }
+.ligne-replay.tete .code::before { content: "▸"; position: absolute; left: -10px; color: var(--rouge-vif); }
+.ligne-replay .rail { height: 16px; }
+.ligne-replay .rail i {
+  display: block; height: 100%; width: 0; border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--eq) 55%, transparent), var(--eq));
+  transition: width .65s var(--ease);
+}
+.ligne-replay .pts { text-align: right; font-size: 14px; }
+/* Vainqueur de la manche : fond teinté à sa couleur d'écurie + étiquette WIN, immédiats (aucune transition) */
+.ligne-replay.vainqueur { background: linear-gradient(90deg, color-mix(in srgb, var(--eq) 28%, transparent), transparent 70%); border-radius: 3px; }
+.ligne-replay.vainqueur .code::after { content: attr(data-win); margin-left: 6px; padding: 1px 4px; font: 700 9px var(--f-mono); font-style: normal; color: #111; background: var(--eq); border-radius: 2px; vertical-align: 1px; }
+
+.replay-frise { flex: none; display: flex; gap: 3px; }
+.replay-frise i { flex: 1; height: 4px; border-radius: 2px; background: var(--carbone-3); transition: background .4s; }
+.replay-frise i.fait { background: var(--texte-3); }
+.replay-frise i.ici { background: var(--rouge); }
+
+@media (max-width: 820px) {
+  body.en-replay #scene { transform: translateY(-26vh); }
+  body.en-replay .saisons { display: none; }
+  .replay { top: auto; height: 64vh; width: auto; left: 16px; padding: 12px; gap: 8px; }
+  .replay .manche { font-size: 17px; }
+  .replay-piste { display: none; }   /* sur téléphone : globe + podium + classement, le tracé n'a pas la place */
+  .replay-carte b { font-size: 19px; }
+}

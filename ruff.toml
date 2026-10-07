@@ -1,0 +1,4 @@
+# Contrôle du code Python (python -m ruff check scripts)
+line-length = 140
+[lint]
+select = ["E", "F", "W", "B"]

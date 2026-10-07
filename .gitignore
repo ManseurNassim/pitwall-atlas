@@ -1,0 +1,6 @@
+node_modules/
+dist/
+dist-artifact/
+__pycache__/
+data/openf1/
+data/*.log
