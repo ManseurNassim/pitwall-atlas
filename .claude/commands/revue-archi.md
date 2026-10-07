@@ -2,7 +2,7 @@
 description: Revue d'architecture du projet (à lancer toutes les 2-3 fonctionnalités)
 ---
 
-Fais une revue d'architecture de Pitwall Atlas par rapport à la section « Architecture et règles de code » de CLAUDE.md.
+Fais une revue d'architecture de F1 Atlas par rapport à la section « Architecture et règles de code » de CLAUDE.md.
 
 1. Regarde ce qui a changé depuis la dernière revue : `git log --oneline` et `git diff` depuis le commit dont le message commence par « revue-archi » (ou les 5 derniers commits s'il n'y en a pas).
 2. Sur ces fichiers seulement (pas tout le projet), cherche :

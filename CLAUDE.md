@@ -1,8 +1,8 @@
-# Pitwall Atlas — globe F1 interactif
+# F1 Atlas — globe F1 interactif
 
 Projet perso, amateur (pas un produit) : globe 3D des circuits de F1 (saisons 2020 → en cours) : clic continent → zoom, clic circuit → fiche (tracé animé, résultat, graphique tour par tour, records, palmarès), replay animé de chaque saison. Vite + JavaScript (modules ES), sans framework. Données F1 récupérées au build (API Jolpica, OpenF1), jamais dans le navigateur.
 
-Artifact : https://claude.ai/artifact/LrynXR8VouL1eJFWRg9Cjg — republier `dist-artifact/pitwall-atlas.html` sur CETTE url (paramètre `url`).
+Artifact : https://claude.ai/artifact/LrynXR8VouL1eJFWRg9Cjg — republier `dist-artifact/f1-atlas.html` sur CETTE url (paramètre `url`).
 
 ## Commandes
 

@@ -1,4 +1,4 @@
-# Roadmap — Pitwall Atlas
+# Roadmap — F1 Atlas
 
 Ordre = priorité. Mode automatique (`/loop` dans une session ouverte sur ce dossier) : prendre la première case vide,
 l'implémenter en suivant CLAUDE.md, vérifier (`npm run dev` + navigateur intégré), `npm run build:artifact` et republier,
