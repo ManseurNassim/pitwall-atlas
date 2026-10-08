@@ -71,6 +71,11 @@
     "arrets": { "one": "{n} arrêt (T{tours})", "other": "{n} arrêts (T{tours})" },
     "aucunArret": "aucun arrêt"
   },
+  "consentement": {
+    "texte": "Ce site utilise Google Analytics pour compter les visites (cookies de mesure d'audience).",
+    "accepter": "Accepter",
+    "refuser": "Refuser"
+  },
   "replay": {
     "bouton": "▶ Replay",
     "aria": "Replay de la saison",

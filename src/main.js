@@ -19,6 +19,7 @@ import "./ui/entete.js";
 import "./ui/panneau.js";
 import "./ui/fiche.js";
 import "./ui/replay.js";
+import "./lib/analytics.js";
 
 traduirePage();   // textes fixes du HTML (data-t)
 const { annee, circuit } = lireHash();

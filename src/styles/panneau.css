@@ -68,4 +68,5 @@ aside.saison {
 /* Paysage : colonne étroite à gauche */
 @media (max-height: 520px) and (min-width: 600px) and (pointer: coarse) {
   aside.saison { top: 50px; bottom: 8px; left: 12px; width: 250px; }
+  body.fiche-ouverte aside.saison { transform: translateX(-110%); opacity: 0; pointer-events: none; }   /* place au globe, la fiche occupe la droite */
 }

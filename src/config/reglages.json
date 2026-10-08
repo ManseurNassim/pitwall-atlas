@@ -1,6 +1,9 @@
 {
   "_note": "Réglages de la page (durées en ms, altitudes de caméra en rayons terrestres). Aucun de ces nombres n'est écrit dans le code.",
   "langue": "fr",
+  "analytics": {
+    "idMesure": ""
+  },
   "mobileMax": 820,
   "globe": {
     "atmosphere": "#ff3322",

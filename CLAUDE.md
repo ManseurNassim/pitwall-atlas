@@ -34,6 +34,7 @@ src/donnees.js         lecture des JSON + sélecteurs (mancheDuCircuit, mancheDe
 src/globe/             scene.js (globe, caméra, vol()) · pays.js (hexagones, survol) · marqueurs.js (marqueurs, étiquettes, arcs)
 src/ui/                entete · panneau · fiche · piste (tracé animé) · graphique-course · replay · decor (ciel, intro, annoncer())
 src/lib/               i18n.js (t, traduirePage, dateCourte, nombre via Intl) · format.js (esc, pad, decompte, rejouer)
+                       analytics.js (Google Analytics après consentement, site seulement, id dans reglages.json → analytics.idMesure)
                        constantes.js (couleurEq, CONTINENTS, reglages, reduit, mobile, chaqueSeconde)
 src/styles/            tokens.css (couleurs, polices de l'interface) + un .css par zone
 ```

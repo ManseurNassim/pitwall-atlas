@@ -36,3 +36,14 @@ body.fiche-ouverte #scene { transform: translateX(-210px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Bandeau de consentement (Google Analytics) : discret, en bas à droite (en haut des panneaux sur téléphone) */
+.consentement {
+  position: fixed; z-index: 60; right: 16px; bottom: 16px; max-width: 360px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 14px;
+  background: var(--verre-dense); border: 1px solid var(--trait); border-radius: 6px; font-size: 12.5px;
+}
+.consentement p { margin: 0 0 4px; flex-basis: 100%; color: var(--texte-2); }
+.consentement button { padding: 6px 12px; border-radius: 3px; font-size: 12px; font-weight: 700; border: 1px solid var(--trait); }
+.consentement .accepter { background: var(--rouge); border-color: var(--rouge); color: #fff; }
+@media (max-width: 820px) { .consentement { left: 12px; right: 12px; bottom: auto; top: 96px; max-width: none; } }

@@ -24,7 +24,8 @@ function placerCurseur(anime = true) {
   curseur.getBoundingClientRect(); curseur.style.transition = "";
   nav.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
 }
-addEventListener("resize", () => placerCurseur(false));
+// Toute variation de la barre (rotation, police chargée, passage portrait/paysage) replace le curseur
+new ResizeObserver(() => etat.saison && placerCurseur(false)).observe(nav);
 
 function rendreEncart() {
   const { prochain, pilotes, annee } = etat.saison;

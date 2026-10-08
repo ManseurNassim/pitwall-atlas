@@ -107,3 +107,16 @@ body.en-replay #scene { transform: translateX(-230px); }
   .podium-replay { margin-top: 5px; padding-top: 5px; gap: 12px; }
   .podium-replay li { font-size: 12px; }
 }
+
+/* Annonce du nom de la course pendant le replay : dans la zone où le globe reste visible, jamais sous un panneau
+   ni sous l'en-tête. Taille relative à la largeur de cette zone (cqi) : un nom long (« Grande-Bretagne ») tient toujours. */
+body.en-replay #flash { right: 470px; padding-inline: 16px; container-type: inline-size; z-index: 12; }
+body.en-replay #flash.avec-surtitre .texte { font-size: clamp(22px, 8cqi, 110px); max-width: 100%; }
+@media (max-width: 820px) {   /* portrait : juste au-dessus du panneau du bas */
+  body.en-replay #flash { right: 0; bottom: calc(50vh + 12px); align-items: end; padding-bottom: 10px; }
+  body.en-replay #flash.avec-surtitre .texte { font-size: clamp(22px, 8cqi, 40px); }
+}
+@media (max-height: 520px) and (min-width: 600px) and (pointer: coarse) {   /* paysage : à gauche de la colonne */
+  body.en-replay #flash { right: 330px; }
+  body.en-replay #flash.avec-surtitre .texte { font-size: clamp(22px, 7cqi, 48px); }
+}
