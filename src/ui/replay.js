@@ -102,6 +102,7 @@ function etape() {
     <small>R${pad(m.round)} · ${esc(m.ville)}</small><span class="lbl">${t("replay.vainqueur")}</span>
     <b>${esc(v.prenom)} ${esc(v.nom)}</b><em>${esc(v.equipe)}</em>
     <ol class="podium-replay">${suivants.map((p, i) => `<li style="--eq:${couleurEq(p.eqId)}"><i>P${i + 2}</i>${esc(p.nom)}</li>`).join("")}</ol>
+    ${m.sprint?.podium.length ? `<span class="sprint-replay" style="--eq:${couleurEq(m.sprint.podium[0].eqId)}">${t("replay.sprint", { nom: esc(m.sprint.podium[0].nom) })}</span>` : ""}
     ${nouveauLeader ? `<span class="nouveau-leader">${t("replay.nouveauLeader", { code: enTete })}</span>` : ""}`;
   rejouer(carte, "entre");
   survolerManches(etat.saison.manches, false);

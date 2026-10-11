@@ -38,12 +38,17 @@ def pilote(d):
     return {"nom": d["familyName"], "prenom": d["givenName"], "code": d.get("code") or d["familyName"][:3].upper()}
 
 
+def podium_court(resultats):
+    """Les 3 premiers d'une course : code, nom, écurie."""
+    return [{"code": pilote(x["Driver"])["code"], "nom": x["Driver"]["familyName"], "eqId": x["Constructor"]["constructorId"]}
+            for x in resultats[:3]]
+
+
 def podium_de(pod):
     p1 = pod[1]
     return {**pilote(p1["Driver"]), "equipe": p1["Constructor"]["name"], "eqId": p1["Constructor"]["constructorId"],
             "grille": int(p1["grid"]),
-            "podium": [{"code": pilote(pod[k]["Driver"])["code"], "nom": pod[k]["Driver"]["familyName"],
-                        "eqId": pod[k]["Constructor"]["constructorId"]} for k in (1, 2, 3) if k in pod]}
+            "podium": podium_court([pod[k] for k in (1, 2, 3) if k in pod])}
 
 
 def dernier_classement(nom, cle):
@@ -60,6 +65,7 @@ def saison(annee, lieux):
     for p in (1, 2, 3):
         for r in (lire(f"podium_{annee}_{p}") or {"RaceTable": {"Races": []}})["RaceTable"]["Races"]:
             podiums.setdefault(r["round"], {})[p] = r["Results"][0]
+    sprints = {r["round"]: r["SprintResults"] for r in (lire(f"sprints_{annee}") or {"RaceTable": {"Races": []}})["RaceTable"]["Races"]}
     courses = []
     for r in cal["RaceTable"]["Races"]:
         cid = r["Circuit"]["circuitId"]
@@ -67,7 +73,10 @@ def saison(annee, lieux):
         gp = nom_gp(r["raceName"], META[cid]["gp"])
         pod = podiums.get(r["round"], {})
         courses.append({"round": int(r["round"]), "id": cid, "date": r["date"], "heure": r.get("time"),
-                        "gp": gp, "gpCourt": nom_court(gp), "vainqueur": podium_de(pod) if 1 in pod else None})
+                        "gp": gp, "gpCourt": nom_court(gp), "vainqueur": podium_de(pod) if 1 in pod else None,
+                        # week-end sprint (annoncé par le calendrier) : podium du sprint, vide tant qu'il n'est pas couru
+                        "sprint": {"podium": podium_court(sprints.get(r["round"], []))}
+                        if "Sprint" in r or r["round"] in sprints else None})
     pilotes = [{"pos": int(x["position"]), **pilote(x["Driver"]), "pts": float(x["points"]), "v": int(x["wins"]),
                 "equipe": x["Constructors"][-1]["name"], "eqId": x["Constructors"][-1]["constructorId"]}
                for x in dernier_classement(f"pilotes_{annee}", "DriverStandings")]

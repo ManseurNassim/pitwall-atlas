@@ -1,6 +1,8 @@
 # Mise à jour automatique des données, sans intervention :
-# chaque matin, télécharge les derniers résultats F1, régénère les données, vérifie que tout passe
-# (lint + build), puis recommite les données SEULEMENT si un Grand Prix a été couru.
+# toutes les 3 heures, télécharge les derniers résultats F1 (courses et sprints), régénère les données,
+# vérifie que tout passe (lint + build), puis recommite les données SEULEMENT si quelque chose a changé.
+# Un passage sans nouveauté dure 1 à 2 minutes et ne publie rien. GitHub décale souvent les tâches
+# planifiées de plusieurs heures : un passage fréquent garantit un site à jour le soir même du GP.
 # Ce commit déclenche Vercel, branché sur ce dépôt, qui reconstruit et publie le site (voir vercel.json).
 #
 # Lancement manuel : onglet Actions → « Mise à jour automatique » → Run workflow.
@@ -9,7 +11,7 @@ name: Mise à jour automatique
 
 on:
   schedule:
-    - cron: "0 6 * * *"        # tous les jours à 6 h UTC : un GP du dimanche (ou du samedi à Las Vegas) est en ligne le lendemain matin
+    - cron: "23 */3 * * *"     # toutes les 3 h (minute 23 : les heures pleines sont les plus engorgées chez GitHub)
   workflow_dispatch:
 
 permissions:

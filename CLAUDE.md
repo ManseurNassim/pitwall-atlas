@@ -10,7 +10,7 @@ Artifact : https://claude.ai/artifact/LrynXR8VouL1eJFWRg9Cjg — republier `dist
 - `npm run donnees` → rafraîchit les API (Jolpica puis OpenF1 ; ~15 min la 1re fois, quelques secondes ensuite) et régénère `src/donnees/` (après chaque GP). Python : `python -m pip install -r requirements.txt`.
 - `npm run lint` → ESLint (JS) + Ruff (Python). `npm run verifier` → cohérence textes/données (lancé automatiquement par les builds).
 - `npm run build` → site statique `dist/`. `npm run build:artifact` → fichier unique pour l'Artifact.
-- Mise à jour automatique : `.github/workflows/mise-a-jour.yml` (GitHub Actions, chaque jour à 6 h UTC) → données, lint, build ; commit des données seulement si un GP a été couru (`maj` = date du dernier GP couru). Hébergement : Vercel branché sur le dépôt (`vercel.json`), qui republie à chaque commit, sur le nom de domaine de l'utilisateur. L'Artifact claude.ai n'est pas mis à jour par ce circuit : le republier à la main.
+- Mise à jour automatique : `.github/workflows/mise-a-jour.yml` (GitHub Actions, toutes les 3 h : GitHub décale les tâches planifiées de plusieurs heures) → données, lint, build ; commit seulement si les données ont changé. OpenF1 n'est jamais bloquant (refus pendant une séance en direct → repris au passage suivant) ; un classement après manche n'est mis en cache qu'une fois publié par Jolpica. Hébergement : Vercel branché sur le dépôt (`vercel.json`), qui republie à chaque commit, sur le nom de domaine de l'utilisateur. L'Artifact claude.ai n'est pas mis à jour par ce circuit : le republier à la main.
 
 ## Architecture (où mettre quoi)
 
@@ -74,6 +74,7 @@ src/styles/            tokens.css (couleurs, polices de l'interface) + un .css p
 - `[hidden] { display: none !important }` dans base.css : sinon un composant `display: flex` reste visible malgré `hidden`.
 - Hexagones : résolution 3, ou 4 pour un petit pays hôte (config) ; jamais plus fin.
 - Le calendrier vient de l'API, jamais de la mémoire. Nouveau circuit → `data/circuits_meta.json` ; nouveau nom de GP → `data/i18n/fr.json` (le build liste les noms non traduits).
+- Sprints (2021+) : `sprint` = `{podium}` sur la manche (vide tant que le sprint n'est pas couru), `null` hors week-end sprint. Les points des sprints sont déjà dans les classements Jolpica.
 - Graphique tour par tour : 2023+ (OpenF1). OpenF1 garde des courses annulées sans données ; 404 = « aucune donnée ».
 - Un circuit peut accueillir deux manches dans une saison (2020) : `cle` = `annee-round`. Liens directs : `#2024`, `#monaco`, `#2024-monaco`.
 - Étiquettes : seulement face caméra (`majEtiquettes`, minuterie, car les vols ne passent pas par les contrôles).

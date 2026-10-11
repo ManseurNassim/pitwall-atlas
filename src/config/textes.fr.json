@@ -18,6 +18,7 @@
   },
   "panneau": {
     "next": "NEXT",
+    "sprint": "Sprint",
     "indisponible": "Classement indisponible.",
     "pts": "pts",
     "victoires": { "one": "{n} victoire", "other": "{n} victoires" },
@@ -57,7 +58,9 @@
     "saviezVous": "Le saviez-vous",
     "source": "Résultats : API Jolpica-F1 (ex-Ergast), à jour du Grand Prix du {maj}. Tracé : bacinger/f1-circuits. Pays : Natural Earth.",
     "grilleStands": "stands",
-    "grillePole": "pole"
+    "grillePole": "pole",
+    "sprint": "Week-end sprint",
+    "podiumSprint": "Sprint"
   },
   "piste": { "aria": "Tracé du circuit {nom}", "s1": "S1", "s2": "S2", "s3": "S3" },
   "graphique": {
@@ -85,6 +88,7 @@
     "annonce": "Manche {round} / {total}",
     "vainqueur": "Vainqueur",
     "win": "WIN",
+    "sprint": "Sprint · {nom}",
     "nouveauLeader": "Nouveau leader · {code}",
     "saison": "Saison {annee}",
     "apres": "Après {n} manches",

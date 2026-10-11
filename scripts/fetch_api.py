@@ -1,7 +1,7 @@
 """Télécharge l'API Jolpica (successeur d'Ergast) dans data/api/ (cache).
 
 Usage : python scripts/fetch_api.py [--force]
-- par saison (data/config.json → saisons) : calendrier, podiums, classements, classement après chaque manche ;
+- par saison (data/config.json → saisons) : calendrier, podiums, sprints, classements, classement après chaque manche ;
 - pour chaque circuit couru : tous ses vainqueurs.
 Les saisons terminées ne sont retéléchargées qu'avec --force ; la saison en cours l'est toujours.
 """
@@ -49,13 +49,21 @@ def main():
                 sauver(f"podium_{s}_{p}", f"{s}/results/{p}.json")
             sauver(f"pilotes_{s}", f"{s}/driverstandings.json")
             sauver(f"constructeurs_{s}", f"{s}/constructorstandings.json")
+        if force or s >= ANNEE_COURANTE or not (CACHE_API / f"sprints_{s}.json").exists():
+            sauver(f"sprints_{s}", f"{s}/sprint.json")   # résultats des courses sprint (vide avant 2021)
         courses = lire_json(CACHE_API / f"calendrier_{s}.json")["RaceTable"]["Races"]
         circuits |= {r["Circuit"]["circuitId"] for r in courses}
-        # Classement après chaque manche courue (replay) : une manche en cache ne change plus
+        # Classement après chaque manche courue (replay) : une manche en cache ne change plus. Gardé seulement
+        # une fois publié (l'API le met en ligne quelques heures après la course) ; sinon retenté au passage suivant.
         for r in courses:
             nom = f"classement_{s}_{r['round']}"
             if r["date"] < aujourdhui and not (CACHE_API / f"{nom}.json").exists():
-                sauver(nom, f"{s}/{r['round']}/driverstandings.json")
+                d = get(f"{s}/{r['round']}/driverstandings.json")
+                if d["StandingsTable"]["StandingsLists"]:
+                    print(f"{nom}…")
+                    ecrire_json(CACHE_API / f"{nom}.json", d)
+                else:
+                    print(f"{nom} : pas encore publié")
 
     # Vainqueurs par circuit : à rafraîchir pour les circuits de la saison en cours (nouvelle victoire possible)
     en_cours = {r["Circuit"]["circuitId"] for r in lire_json(CACHE_API / f"calendrier_{ANNEE_COURANTE}.json",

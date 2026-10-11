@@ -83,6 +83,9 @@ body.en-replay #scene { transform: translateX(-230px); }
 .replay-frise i.fait { background: var(--texte-3); }
 .replay-frise i.ici { background: var(--rouge); }
 
+.sprint-replay { display: block; margin-top: 6px; font: 700 11px var(--f-mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--texte-2); padding-left: 6px; border-left: 2px solid var(--eq); }
+
 /* Téléphone en portrait : globe en haut, panneau en bas un peu plus petit pour voir le déplacement */
 @media (max-width: 820px) {
   body.en-replay #scene { transform: translateY(-22vh); }

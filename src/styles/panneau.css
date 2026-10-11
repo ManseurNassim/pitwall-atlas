@@ -34,6 +34,9 @@ aside.saison {
   background: var(--rouge); color: #fff; font-weight: 900; font-style: italic; font-size: 10px;
   padding: 2px 7px; letter-spacing: .1em; border-radius: 2px; animation: pulse 1.6s infinite;
 }
+/* Étiquette « Sprint » : week-end avec course sprint */
+.tag-sprint { display: inline-block; margin-right: 6px; padding: 0 5px; border-radius: 2px; background: var(--s3); color: var(--carbone);
+  font: 700 9.5px/1.5 var(--f-mono); font-style: normal; letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
 .course .date { font-family: var(--f-mono); color: var(--texte-2); }
 .course.actif .date { color: #4a4a55; }
 

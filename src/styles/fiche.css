@@ -63,6 +63,10 @@ body.fiche-ouverte section.fiche { transform: none; }
 .resultat-saison .qui small { display: block; font-size: 12.5px; font-weight: 400; text-transform: none; color: var(--texte-2); }
 .podium { display: flex; gap: 6px; margin-top: 6px; }
 .podium span { font-family: var(--f-mono); font-size: 11px; padding: 1px 6px; background: var(--carbone); border-radius: 2px; color: var(--texte-2); }
+.podium.sprint { align-items: center; }
+.podium.sprint b { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--s3); margin-right: 2px; }
+.podium.sprint span { box-shadow: inset 2px 0 0 var(--eq); }
+.sur-titre .tag-sprint { margin: 0; font-size: 10px; }
 .compte { font-family: var(--f-mono); display: flex; gap: 14px; }
 .compte div { text-align: center; }
 .compte b { display: block; font-size: 30px; font-weight: 700; line-height: 1; }

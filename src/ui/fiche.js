@@ -12,6 +12,10 @@ const fiche = document.getElementById("fiche");
 const grille = g => (g === 0 ? t("fiche.grilleStands") : g === 1 ? t("fiche.grillePole") : "P" + g);
 const bloc = (titre, contenu, classe = "") => `<div class="bloc ${classe}"><h3>${titre}</h3>${contenu}</div>`;
 
+/** Podium du sprint (week-end sprint déjà couru), sinon rien. */
+const htmlSprint = c => (c.sprint?.podium.length ? `<div class="podium sprint"><b>${t("fiche.podiumSprint")}</b>${c.sprint.podium
+  .map((p, i) => `<span style="--eq:${couleurEq(p.eqId)}">P${i + 1} ${esc(p.code)}</span>`).join("")}</div>` : "");
+
 function htmlResultat(c) {
   if (c.vainqueur) {
     const v = c.vainqueur;
@@ -19,11 +23,11 @@ function htmlResultat(c) {
     return `<div class="resultat-saison" style="--eq:${couleurEq(v.eqId)}">
       <span class="p1">P1</span>
       <div class="qui">${esc(v.prenom)} ${esc(v.nom)}<small>${esc(v.equipe)} · ${parti}</small>
-        <div class="podium">${v.podium.map((p, i) => `<span>P${i + 1} ${esc(p.code)}</span>`).join("")}</div></div></div>`;
+        <div class="podium">${v.podium.map((p, i) => `<span>P${i + 1} ${esc(p.code)}</span>`).join("")}</div>${htmlSprint(c)}</div></div>`;
   }
   return `<div class="resultat-saison">
     <span class="p1 attente">${c.next ? t("panneau.next") : "R" + c.round}</span>
-    <div class="compte">${t("fiche.unites").map(u => `<div><b></b><small>${u}</small></div>`).join("")}</div></div>`;
+    <div class="compte">${t("fiche.unites").map(u => `<div><b></b><small>${u}</small></div>`).join("")}</div></div>${htmlSprint(c)}`;
 }
 
 function majCompte() {
@@ -66,7 +70,7 @@ function rendre(c) {
     ["premierGP", s.premiere ?? annee], ["editions", s.editions]];
   fiche.innerHTML = `
     <button class="fermer" aria-label="${t("fiche.fermer")}">✕</button>
-    <div class="sur-titre"><span class="rd">${t("fiche.manche", { n: c.round })}</span><span>${dateCourte(c.date)} ${annee}</span><span>· ${esc(c.code)}</span></div>
+    <div class="sur-titre"><span class="rd">${t("fiche.manche", { n: c.round })}</span><span>${dateCourte(c.date)} ${annee}</span><span>· ${esc(c.code)}</span>${c.sprint ? `<span class="tag-sprint">${t("fiche.sprint")}</span>` : ""}</div>
     <h2>${esc(c.gp)}</h2>
     <div class="lieu"><b>${esc(c.nom)}</b> · ${esc(c.ville)}, ${esc(c.pays)}</div>
     ${htmlPiste(c)}

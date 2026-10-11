@@ -15,7 +15,7 @@ function rendreCalendrier() {
       : c.next ? `<span class="badge-next">${t("panneau.next")}</span>` : `<span class="date">${dateCourte(c.date)}</span>`;
     return `<button class="course" data-cle="${c.cle}">
       <span class="rd">R${pad(c.round)}</span>
-      <span><span class="nom">${esc(c.gpCourt)}</span><span class="meta">${esc(c.nom)} · ${dateCourte(c.date)}</span></span>
+      <span><span class="nom">${esc(c.gpCourt)}</span><span class="meta">${c.sprint ? `<i class="tag-sprint">${t("panneau.sprint")}</i>` : ""}${esc(c.nom)} · ${dateCourte(c.date)}</span></span>
       <span class="droite">${droite}</span></button>`;
   }).join("");
   marquerLignes();
